@@ -1,80 +1,123 @@
 <div align="center">
-  <img src="images/school-logo.jpg" alt="S.N. Memorial School Logo" width="120">
-  <h1>S.N. Memorial School</h1>
-  <p><strong>Premier CBSE Affiliated English Medium School in Asansol.</strong></p>
+  <img src="images/school-emblem.png" alt="S.N. Memorial School Logo" width="120">
+  <br/>
+  <h1>S.N. Memorial School 🏫</h1>
+  <p><strong>A Modern, Responsive & Premium Digital Experience</strong></p>
   
   [![Live Demo](https://img.shields.io/badge/Demo-Live_Website-blue?style=for-the-badge&logo=cloudflare)](https://snmemorialschool.pages.dev/)
   [![Status](https://img.shields.io/badge/Status-Beta_Prototype-orange?style=for-the-badge)](#)
-  [![Developer](https://img.shields.io/badge/Developer-Shasradha_Karmakar-success?style=for-the-badge)](#)
+  [![Developer](https://img.shields.io/badge/Developer-Shasradha_Karmakar-success?style=for-the-badge&logo=github)](https://github.com/shasradha)
 </div>
 
-<br/>
+---
 
-## 🌟 About The Project
+<img src="images/campus-new-building.jpg" alt="Campus Building" width="100%" style="border-radius: 12px; margin-bottom: 20px;">
 
-Welcome to the newly redesigned frontend prototype for **S.N. Memorial School**. This platform was crafted with passion and dedication to provide a modern, seamless, and visually stunning digital experience for the school community.
+Welcome to the official frontend redesign prototype for **S.N. Memorial School**, a premier CBSE-affiliated English Medium Co-Educational School located in Asansol, West Bengal. This digital platform was crafted with passion to reflect the school's commitment to excellence and its modern vision.
 
 > *"I took the initiative to proudly craft this digital space as a way to give back to our beloved school. I hope you enjoy the new look as much as I enjoyed building it! I have been passionately working on this project since 2024 — from Class VII to today in Class IX."*  
 > — **Shasradha Karmakar**
 
 ### ⚠️ Development Status
-This website is currently under active development and is serving as a **Beta Prototype**. New features and layout refinements are continuously being added!
+This repository hosts the **Beta Prototype** of the website. It is currently under active development, bringing iterative UI improvements, enhanced responsiveness, and premium visual elements.
 
 ---
 
-## 🚀 Features
+## 📸 Campus Showcase
 
-- **Modern Glassmorphism UI:** Stunning visuals powered by custom CSS and Tailwind utilities.
-- **Scroll Animations:** Smooth component appearances using *AOS (Animate On Scroll)*.
-- **Responsive Navigation:** A seamlessly adaptive navigation bar with mobile menu capabilities.
-- **Fast Performance:** Optimized rendering without heavy frameworks. 
-- **SEO Ready:** Descriptive semantic HTML and meta tags structured for search engines.
+Discover the vibrant life and world-class facilities at S.N. Memorial School.
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><b>Front Campus</b></td>
+      <td align="center"><b>Classroom Interior</b></td>
+      <td align="center"><b>Science Labs</b></td>
+    </tr>
+    <tr>
+      <td><img src="images/campus-front.jpg" width="300" height="200" style="object-fit: cover;"></td>
+      <td><img src="images/classroom-interior.jpg" width="300" height="200" style="object-fit: cover;"></td>
+      <td><img src="images/science-lab.jpg" width="300" height="200" style="object-fit: cover;"></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Computer / Math Class</b></td>
+      <td align="center"><b>Annual Function</b></td>
+      <td align="center"><b>Dance & Cultural Event</b></td>
+    </tr>
+    <tr>
+      <td><img src="images/math-class.jpg" width="300" height="200" style="object-fit: cover;"></td>
+      <td><img src="images/annual-function.jpg" width="300" height="200" style="object-fit: cover;"></td>
+      <td><img src="images/dance-performance.jpg" width="300" height="200" style="object-fit: cover;"></td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td align="center"><b>Yoga Session</b></td>
+      <td align="center"><b>Main Playground</b></td>
+    </tr>
+    <tr>
+      <td><img src="images/yoga-session.jpg" width="450" height="250" style="object-fit: cover;"></td>
+      <td><img src="images/playground-main.jpg" width="450" height="250" style="object-fit: cover;"></td>
+    </tr>
+  </table>
+</div>
 
 ---
 
-## 🛠️ Built With
+## ⚡ Core Features
 
-The project uses a lightweight but modern frontend stack for maximum performance and easiest maintainability:
-
-- **[HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)** - Core structure
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling (via CDN)
-- **Vanilla JavaScript** - Logic and interactions
-- **[Font Awesome](https://fontawesome.com/)** - Beautiful typography-based icons
-- **[AOS (Animate On Scroll)](https://michalsnik.github.io/aos/)** - Scroll transition animations
-- **[Google Fonts](https://fonts.google.com/)** - Inter & Playfair Display typography
+- **🎨 Modern Glassmorphism UI:** Stunning visuals, blurs, and premium aesthetics powered by custom CSS and Tailwind utilities.
+- **✨ Scroll Animations:** Bringing the website to life with smooth, professional scroll transitions using AOS.
+- **📱 True Responsiveness:** A flawless experience across desktops, tablets, and smartphones.
+- **⚡ Blazing Fast Performance:** Lightweight and optimized rendering without the overhead of heavy SPA frameworks.
+- **🔍 SEO Optimized:** Structured with semantic HTML5 tags and meta descriptions to rank high on search engines.
 
 ---
 
-## 💻 Running Locally
+## 🛠️ Technology Stack
 
-As a static site, you don't need any complex build tools to run this project! 
+The project relies on a highly performant and modern frontend architecture:
+
+| Technology | Description |
+| :--- | :--- |
+| **[HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)** | Core structural foundation of the pages. |
+| **[Tailwind CSS](https://tailwindcss.com/)** | Rapid, utility-first styling for complex and responsive layouts. |
+| **Vanilla JavaScript** | DOM manipulation, logic, and interactive components. |
+| **[Font Awesome 6](https://fontawesome.com/)** | Extensive, high-quality vector icons for elegant UI accents. |
+| **[AOS.js](https://michalsnik.github.io/aos/)** | Specialized library for smooth Animate-On-Scroll behaviors. |
+| **[Google Fonts](https://fonts.google.com/)** | Custom typography featuring *Inter* and *Playfair Display*. |
+
+---
+
+## 🚀 Running Locally
+
+Experiencing the project on your local machine is extremely simple. No complicated build processes or configurations required.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/shasradha/SNMS-Redesign.git
+   git clone https://github.com/shasradha/snmemorialschool.git
    ```
-2. **Navigate to the directory:**
+2. **Navigate to the project directory:**
    ```bash
-   cd SNMS-Redesign
+   cd snmemorialschool
    ```
-3. **Open `index.html` in your browser:**
-   Double-click the `index.html` file, or use a tool like [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) in VS Code to get auto-reloading.
+3. **Launch the site:**
+   Simply double-click on `index.html` to open it in your default web browser, or use a tool like [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) in VS Code for live reloading updates as you code.
 
 ---
 
-## 📸 Screenshots
+## 📞 Get In Touch
 
-| Home Page | Academics |
-| :---: | :---: |
-| <img src="images/campus-front.jpg" width="400"> | <img src="images/faculty-team.jpg" width="400"> |
+**Developer:**  
+👨‍💻 Shasradha Karmakar (Class IX Student)  
+🔗 [GitHub Profile](https://github.com/shasradha)
 
----
-
-## 🤝 Contact
-
-**Developer:** Shasradha Karmakar, Class IX Student  
-**School Contact:** [snmemorialasn@gmail.com](mailto:snmemorialasn@gmail.com)  
-**Location:** Senraleigh Road, Panchgachia, Asansol - 713341, West Bengal
+**School Details:**  
+🏫 **Name:** S.N. Memorial School  
+📍 **Location:** Senraleigh Road, Panchgachia, Asansol - 713341, West Bengal  
+📧 **Email:** [snmemorialasn@gmail.com](mailto:snmemorialasn@gmail.com)  
 
 <br/>
-<p align="center">Made with ❤️ for S.N. Memorial School</p>
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=1e40af&height=100&section=footer"/>
+</div>
