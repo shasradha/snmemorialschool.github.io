@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Message - Prototype Stage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712; /* deep gray-950 */
+            color: #f3f4f6;
+            margin: 0;
+        }
+        h1, h2, h3, .font-space {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glow {
+            position: absolute;
+            background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, rgba(0,0,0,0) 70%);
+            width: 150vw;
+            height: 150vw;
+            max-width: 800px;
+            max-height: 800px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .glow-amber {
+            position: absolute;
+            background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, rgba(0,0,0,0) 70%);
+            width: 120vw;
+            height: 120vw;
+            max-width: 600px;
+            max-height: 600px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        .profile-img-container {
+            position: relative;
+        }
+        .profile-img-container::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="selection:bg-sky-500/30">
+    <!-- Fixed background wrapper so glows don't cause scrolling/overflow issues -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="glow top-0 left-0 -translate-x-1/3 -translate-y-1/3"></div>
+        <div class="glow-amber bottom-0 right-0 translate-x-1/4 translate-y-1/4"></div>
+    </div>
+
+    <!-- Scrollable content wrapper -->
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6">
+        <div class="w-full max-w-3xl glass-card rounded-3xl p-6 sm:p-10 md:p-14 text-center">
+            
+            <div class="inline-flex items-center gap-2 bg-sky-900/30 border border-sky-700/50 text-sky-400 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium tracking-wide mb-6 sm:mb-8">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                </span>
+                Beta Prototype
+            </div>
+
+            <h1 class="font-space text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                A Note From The <br class="sm:hidden"><span class="gradient-text">Developer</span>
+            </h1>
+
+            <div class="space-y-4 sm:space-y-6 text-gray-300 text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 text-left md:text-center mx-auto">
+                <p>
+                    ⚠️ <strong class="text-amber-400">This website is currently under active development.</strong>
+                </p>
+                <p>
+                    Welcome! You are currently viewing a beta prototype. This platform was redesigned with passion and dedication to provide a modern, seamless experience for the S.N. Memorial School community.
+                </p>
+                <div class="relative bg-white/5 border border-white/10 rounded-2xl p-5 sm:p-6 mt-6">
+                    <p class="italic text-gray-300 text-sm sm:text-base">
+                        "I took the initiative to proudly craft this digital space as a way to give back to our beloved school. I hope you enjoy the new look as much as I enjoyed building it! I have been passionately working on this project since 2024 — from Class VII to today in Class IX."
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-6 sm:pt-8 mt-6 sm:mt-8 flex flex-col md:flex-row items-center justify-between gap-6 md:text-left text-center">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <div class="w-16 h-16 rounded-full profile-img-container shrink-0">
+                        <img src="images/me/developer-photo.jpg" alt="Shasradha Karmakar" class="w-full h-full rounded-full object-cover border-2 border-slate-900 relative z-10" onerror="this.src='https://ui-avatars.com/api/?name=Shasradha+Karmakar&background=0284c7&color=fff'">
+                    </div>
+                    <div>
+                        <h3 class="font-space text-lg sm:text-xl font-bold text-white tracking-wide">Shasradha Karmakar</h3>
+                        <p class="text-sky-400 text-xs sm:text-sm mt-1">Class IX Student, SNMS &bull; Web Developer</p>
+                    </div>
+                </div>
+                
+                <a href="index.html" class="group relative inline-flex items-center gap-2 px-6 sm:px-8 py-3 bg-white text-gray-900 font-semibold rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] w-full sm:w-auto justify-center">
+                    <span class="relative z-10 transition-colors group-hover:text-sky-800">Return Home</span>
+                    <svg class="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1 group-hover:text-sky-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

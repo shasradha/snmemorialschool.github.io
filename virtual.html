@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Take a virtual tour of S.N. Memorial School campus - explore classrooms, grounds, labs, and facilities.">
+    <title>Virtual Tour - S.N. Memorial School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#1e40af;--secondary:#3b82f6;--accent:#f59e0b;--light:#f3f4f6;--dark:#1f2937}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Inter',sans-serif;line-height:1.6;color:#374151;overflow-x:hidden}
+        h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',serif;font-weight:700;line-height:1.3}
+        img{max-width:100%;height:auto}
+        .hero-bg{background:linear-gradient(135deg,rgba(4,36,88,.93) 0%,rgba(9,54,128,.93) 100%),url('images/campus-front.jpg') center/cover;position:relative;overflow:hidden}
+        .floating-el{position:absolute;border-radius:50%;background:linear-gradient(45deg,rgba(255,255,255,.1),transparent);filter:blur(40px);animation:fl 20s infinite linear}
+        @keyframes fl{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-20px) rotate(10deg)}50%{transform:translateY(20px) rotate(-10deg)}75%{transform:translateY(-10px) rotate(5deg)}}
+        .glass{background:rgba(255,255,255,.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:24px;border:1px solid rgba(255,255,255,.1);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+        .nav-link{position:relative;color:#4a5568;transition:color .3s;font-family:'Inter',sans-serif}
+        .nav-link:hover{color:var(--primary)}
+        .nav-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--primary);transition:width .3s}
+        .nav-link:hover::after{width:100%}
+        .nav-link.active{color:var(--primary);font-weight:600}
+        .nav-link.active::after{width:100%}
+        .mobile-menu{transform:translateX(100%);transition:transform .3s ease-in-out}
+        .mobile-menu.active{transform:translateX(0)}
+        .scroll-ind{animation:bounce 2s infinite}
+        @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0) translateX(-50%)}40%{transform:translateY(-12px) translateX(-50%)}60%{transform:translateY(-6px) translateX(-50%)}}
+        .splide__slide{border-radius:0;overflow:hidden}
+        .splide__arrow{background:rgba(255,255,255,.9)!important;width:48px!important;height:48px!important;opacity:1!important;box-shadow:0 4px 12px rgba(0,0,0,.15)!important;border-radius:14px!important}
+        .splide__arrow svg{fill:#1e40af!important;width:22px!important;height:22px!important}
+        .splide__arrow:hover{background:white!important;box-shadow:0 8px 24px rgba(0,0,0,.2)!important}
+        .splide__pagination__page{background:#cbd5e1!important;width:10px!important;height:10px!important}
+        .splide__pagination__page.is-active{background:var(--primary)!important;transform:scale(1.3)}
+        .slide-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.75) 100%);padding:2rem;color:white}
+        .gallery-card{overflow:hidden;border-radius:16px;transition:all .3s ease;position:relative}
+        .gallery-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.15)}
+        .gallery-card img{transition:transform .6s ease}
+        .gallery-card:hover img{transform:scale(1.08)}
+        .gallery-card .overlay{transition:opacity .4s ease}
+        .gallery-card:hover .overlay{opacity:1!important}
+        .video-container{aspect-ratio:16/9;transition:transform .3s ease}
+        .video-container:hover{transform:scale(1.01)}
+        .facility-card{transition:all .3s ease}
+        .facility-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+        .facility-card .ic{transition:all .4s}
+        .facility-card:hover .ic{transform:scale(1.1) rotate(5deg)}
+        @media(max-width:768px){.floating-el{display:none}.glass{border-radius:16px;padding:1.5rem}.text-4xl,.text-5xl,.text-6xl{font-size:2rem!important}.text-3xl{font-size:1.75rem!important}.p-8,.p-10,.p-12{padding:1.5rem!important}.gap-8,.gap-12{gap:1.5rem!important}.py-20,.py-24{padding-top:3rem!important;padding-bottom:3rem!important}.container{padding-left:1rem;padding-right:1rem}.grid-cols-2,.grid-cols-3,.grid-cols-4{grid-template-columns:1fr!important}}
+        @media(min-width:769px) and (max-width:1024px){.grid-cols-3{grid-template-columns:repeat(2,1fr)!important}}
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 xl:px-0 py-3 max-w-7xl">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/school-logo.jpg" alt="School Logo" class="h-16 w-16 rounded-lg shadow-md border-2 border-gray-100">
+                    <div class="hidden sm:block">
+                        <h1 class="text-xl font-bold text-gray-800">S.N. MEMORIAL SCHOOL</h1>
+                        <h3 class="text-sm font-medium text-gray-700 mt-1" style="font-family:'Inter',sans-serif;font-weight:500">CBSE Affiliated English Medium Co-Educational School</h3>
+                        <p class="text-xs text-gray-500 mt-1" style="font-family:'Inter',sans-serif;font-weight:400">© Shasradha Karmakar of Class IX</p>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="Me.html" class="nav-link">(About Web Developer)</a>
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="academics.html" class="nav-link">Academics</a>
+                    <a href="activities.html" class="nav-link">Activities</a>
+                    <a href="admission.html" class="bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all font-medium" style="font-family:'Inter',sans-serif">Contact</a>
+                </div>
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700 focus:outline-none" aria-label="Toggle menu">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white z-40 lg:hidden pt-20 px-6 overflow-y-auto">
+        <div class="flex flex-col space-y-6 py-8">
+            <a href="Me.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">About Web Developer</a>
+            <a href="index.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Home</a>
+            <a href="about.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">About</a>
+            <a href="academics.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Academics</a>
+            <a href="activities.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Activities</a>
+            <a href="admission.html" class="bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-3 rounded-lg text-center font-medium mt-4">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-[70vh] flex items-center pt-24 pb-16 relative">
+        <div class="floating-el w-96 h-96 -top-48 -left-48 opacity-20"></div>
+        <div class="floating-el w-64 h-64 top-1/4 right-0 opacity-15" style="animation-delay:-5s"></div>
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl relative z-10">
+            <div class="glass p-8 md:p-12 max-w-3xl mx-auto text-center text-white" data-aos="fade-up" data-aos-delay="100">
+                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-6 text-sm tracking-wider uppercase" style="font-family:'Inter',sans-serif">
+                    <i class="fas fa-camera text-amber-400"></i>
+                    <span class="text-blue-100">Explore Our Campus</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white">Virtual</span>
+                    <br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-100">Campus Tour</span>
+                </h1>
+                <p class="text-xl text-blue-100 mb-6 font-light tracking-wide" style="font-family:'Inter',sans-serif">Walk through our school from the comfort of your home</p>
+                <div class="flex justify-center space-x-3">
+                    <div class="w-10 h-1 bg-amber-400 rounded-full"></div>
+                    <div class="w-10 h-1 bg-white/30 rounded-full"></div>
+                    <div class="w-10 h-1 bg-white/30 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-ind absolute bottom-8 left-1/2 text-white/60"><i class="fas fa-chevron-down text-xl"></i></div>
+    </section>
+
+    <!-- Campus Slider -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family:'Inter',sans-serif">CAMPUS VIEWS</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Explore Our <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">School Campus</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif">Discover the spaces where learning, growth, and memories happen every day</p>
+            </div>
+            <div class="splide rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up" aria-label="Campus Tour">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide" style="height:500px;position:relative">
+                            <img src="images/campus-front.jpg" alt="Main Campus" style="width:100%;height:100%;object-fit:cover">
+                            <div class="slide-overlay"><h2 class="text-2xl lg:text-3xl font-bold mb-2">Main Campus Entrance</h2><p class="text-gray-200" style="font-family:'Inter',sans-serif">The welcoming gateway to our institution</p></div>
+                        </li>
+                        <li class="splide__slide" style="height:500px;position:relative">
+                            <img src="images/campus-back.jpg" alt="Backside View" style="width:100%;height:100%;object-fit:cover">
+                            <div class="slide-overlay"><h2 class="text-2xl lg:text-3xl font-bold mb-2">Campus Backside View</h2><p class="text-gray-200" style="font-family:'Inter',sans-serif">A panoramic view of our spacious campus</p></div>
+                        </li>
+                        <li class="splide__slide" style="height:500px;position:relative">
+                            <img src="images/campus-building.jpg" alt="School Building" style="width:100%;height:100%;object-fit:cover">
+                            <div class="slide-overlay"><h2 class="text-2xl lg:text-3xl font-bold mb-2">School Building</h2><p class="text-gray-200" style="font-family:'Inter',sans-serif">Modern infrastructure with spacious classrooms</p></div>
+                        </li>
+                        <li class="splide__slide" style="height:500px;position:relative">
+                            <img src="images/campus-new-building.jpg" alt="New Building" style="width:100%;height:100%;object-fit:cover">
+                            <div class="slide-overlay"><h2 class="text-2xl lg:text-3xl font-bold mb-2">New School Building</h2><p class="text-gray-200" style="font-family:'Inter',sans-serif">State-of-the-art facilities for enhanced learning</p></div>
+                        </li>
+                        <li class="splide__slide" style="height:500px;position:relative">
+                            <img src="images/playground-main.jpg" alt="Playground" style="width:100%;height:100%;object-fit:cover">
+                            <div class="slide-overlay"><h2 class="text-2xl lg:text-3xl font-bold mb-2">School Playground</h2><p class="text-gray-200" style="font-family:'Inter',sans-serif">Open ground for sports and physical activities</p></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities -->
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family:'Inter',sans-serif">INFRASTRUCTURE</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Facilities</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif">World-class facilities designed to support every aspect of student development</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="facility-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up">
+                    <div class="ic w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg"><i class="fas fa-chalkboard text-2xl text-white"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Smart Classrooms</h3>
+                    <p class="text-gray-600 text-sm" style="font-family:'Inter',sans-serif">Well-ventilated, spacious rooms with digital boards and modern teaching aids for interactive learning.</p>
+                </div>
+                <div class="facility-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ic w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg"><i class="fas fa-flask text-2xl text-white"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Science Laboratories</h3>
+                    <p class="text-gray-600 text-sm" style="font-family:'Inter',sans-serif">Fully equipped Physics, Chemistry, and Biology labs for practical and hands-on experiments.</p>
+                </div>
+                <div class="facility-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ic w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg"><i class="fas fa-laptop text-2xl text-white"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Computer Lab</h3>
+                    <p class="text-gray-600 text-sm" style="font-family:'Inter',sans-serif">Modern computer lab with internet access, teaching digital literacy and coding fundamentals.</p>
+                </div>
+                <div class="facility-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up">
+                    <div class="ic w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg"><i class="fas fa-futbol text-2xl text-white"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Sports Ground</h3>
+                    <p class="text-gray-600 text-sm" style="font-family:'Inter',sans-serif">Spacious playground for cricket, football, athletics, and annual sports day celebrations.</p>
+                </div>
+                <div class="facility-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ic w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg"><i class="fas fa-book-open text-2xl text-white"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Library</h3>
+                    <p class="text-gray-600 text-sm" style="font-family:'Inter',sans-serif">A well-stocked library with textbooks, reference materials, magazines, and a quiet reading area.</p>
+                </div>
+                <div class="facility-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ic w-16 h-16 bg-gradient-to-br from-rose-500 to-rose-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg"><i class="fas fa-theater-masks text-2xl text-white"></i></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Activity Hall</h3>
+                    <p class="text-gray-600 text-sm" style="font-family:'Inter',sans-serif">Multi-purpose hall for assemblies, cultural programs, annual functions, and parent meetings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Gallery -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family:'Inter',sans-serif">GALLERY</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Campus <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Highlights</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif">A visual journey through our vibrant campus</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4" data-aos="fade-up">
+                <div class="gallery-card shadow-md"><img src="images/playground-main.jpg" alt="Playground" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">School Ground</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/playground-aerial.jpg" alt="Campus Area" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Campus Area</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/yoga-morning.jpg" alt="Yoga" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Morning Yoga</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/classroom-interior.jpg" alt="Classroom" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Classroom</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/science-lab.jpg" alt="Science Lab" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Science Lab</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/science-exhibition.jpg" alt="Exhibition" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Science Exhibition</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/sports-day.jpg" alt="Sports" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Sports Day</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/faculty-team.jpg" alt="Teachers" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Our Educators</p></div></div>
+                <div class="gallery-card shadow-md"><img src="images/republic-day.jpg" alt="Flag" class="w-full h-56 object-cover rounded-2xl"><div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent rounded-2xl opacity-0 flex items-end p-4"><p class="text-white text-sm font-medium" style="font-family:'Inter',sans-serif">Republic Day</p></div></div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="https://www.facebook.com/SNMEMORIALSCHOOL/photos" target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-700 to-blue-600 text-white px-8 py-4 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all font-semibold" style="font-family:'Inter',sans-serif"><i class="fab fa-facebook text-lg"></i> View More on Facebook <i class="fas fa-external-link-alt text-sm opacity-70"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-24 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10"><div class="absolute top-0 left-0 w-full h-full" style="background-image:radial-gradient(circle at 20% 50%,rgba(245,158,11,.3) 0%,transparent 50%),radial-gradient(circle at 80% 50%,rgba(59,130,246,.3) 0%,transparent 50%)"></div></div>
+        <div class="container mx-auto px-4 xl:px-0 max-w-5xl relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Campus <span class="text-amber-400">Overview</span></h2>
+                <p class="text-blue-200 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif">Watch our school campus tour and experience the learning environment</p>
+            </div>
+            <div class="video-container bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-white/10" data-aos="fade-up">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/your-video-id" title="Campus Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="text-center text-blue-300 text-sm mt-4 italic" style="font-family:'Inter',sans-serif"><i class="fas fa-info-circle mr-1"></i> Video coming soon — stay tuned!</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-4xl text-center" data-aos="fade-up">
+            <div class="relative">
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/10 to-amber-500/10 rounded-3xl blur-xl opacity-60"></div>
+                <div class="relative bg-white rounded-2xl p-10 md:p-14 shadow-xl border border-gray-100">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"><i class="fas fa-school text-3xl text-white"></i></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Impressed With Our <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Campus</span>?</h2>
+                    <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto" style="font-family:'Inter',sans-serif">Schedule a real campus visit or start the admission process today. We'd love to welcome your family!</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="admission.html" class="bg-gradient-to-r from-blue-800 to-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:shadow-xl hover:-translate-y-1 transition-all inline-flex items-center justify-center gap-2" style="font-family:'Inter',sans-serif"><i class="fas fa-paper-plane"></i> Apply for Admission</a>
+                        <a href="tel:+919002464999" class="border-2 border-blue-800 text-blue-800 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all inline-flex items-center justify-center gap-2" style="font-family:'Inter',sans-serif"><i class="fas fa-phone"></i> Schedule a Visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="grid md:grid-cols-4 gap-8 pb-12">
+                <div><img src="images/school-logo.jpg" alt="Logo" class="h-20 mb-4 rounded-lg border-2 border-gray-100"><p class="text-sm" style="font-family:'Inter',sans-serif">Run & Managed by S.N. Memorial Educational Trust</p></div>
+                <div><h3 class="text-xl font-bold mb-4 text-white">Quick Links</h3><ul class="space-y-2 text-gray-400" style="font-family:'Inter',sans-serif"><li><a href="index.html" class="hover:text-white transition-colors">Home</a></li><li><a href="admission.html" class="hover:text-white transition-colors">Admissions</a></li><li><a href="academics.html" class="hover:text-white transition-colors">Academics</a></li><li><a href="activities.html" class="hover:text-white transition-colors">Activities</a></li><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="Me.html" class="hover:text-white transition-colors">About Web Developer</a></li></ul></div>
+                <div><h3 class="text-xl font-bold mb-4 text-white">Resources</h3><ul class="space-y-2 text-gray-400" style="font-family:'Inter',sans-serif"><li><a href="#" class="hover:text-white transition-colors">Forms & Downloads</a></li><li><a href="#" class="hover:text-white transition-colors">Careers</a></li><li><a href="#" class="hover:text-white transition-colors">Alumni Network</a></li></ul></div>
+                <div><h3 class="text-xl font-bold mb-4 text-white">Connect</h3><div class="flex space-x-4 text-2xl text-gray-400"><a href="https://www.facebook.com/SNMEMORIALSCHOOL" class="hover:text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook"></i></a><a href="https://www.instagram.com/shasradha_?igsh=MWdpc2JuNXRtZXA4ZQ==" class="hover:text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@snmemorialasn?si=sXb1aGauxGwf9mIm" class="hover:text-white transition-colors" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div><div class="mt-6"><h4 class="text-lg font-semibold mb-2 text-white">School Hours</h4><p class="text-sm text-gray-400" style="font-family:'Inter',sans-serif">Monday - Friday: 8:00 AM - 2:00 PM</p><p class="text-sm text-gray-400" style="font-family:'Inter',sans-serif">Saturday: 8:00 AM - 12:00 PM</p></div></div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center"><p class="text-sm font-medium text-gray-400" style="font-family:'Inter',sans-serif">© 2026 This site has been developed by Shasradha Karmakar of Class IX.</p><p class="text-sm text-gray-400 mt-2" style="font-family:'Inter',sans-serif">⚠️ This website is currently under development and is in its prototype/beta stage.</p></div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded',function(){
+        new Splide('.splide',{type:'loop',perPage:1,autoplay:true,interval:4000,pauseOnHover:true,arrows:true,pagination:true}).mount();
+        AOS.init({duration:800,once:true,offset:100});
+        var btn=document.getElementById('mobile-menu-button'),menu=document.getElementById('mobile-menu');
+        if(btn&&menu){btn.addEventListener('click',function(){menu.classList.toggle('active')});document.addEventListener('click',function(e){if(!menu.contains(e.target)&&!btn.contains(e.target))menu.classList.remove('active')})}
+        var nav=document.querySelector('nav');
+        window.addEventListener('scroll',function(){if(window.scrollY>50){nav.classList.add('shadow-md');nav.classList.remove('shadow-sm')}else{nav.classList.remove('shadow-md');nav.classList.add('shadow-sm')}});
+    });
+    </script>
+</body>
+</html>
+

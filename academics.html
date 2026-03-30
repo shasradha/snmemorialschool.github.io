@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the academic programs at S.N. Memorial School - CBSE curriculum, STEM education, holistic learning, and more.">
+    <title>Academics - S.N. Memorial School</title>
+
+    <!-- Core Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Hero */
+        .academics-hero {
+            background: linear-gradient(135deg, rgba(4, 36, 88, 0.93) 0%, rgba(9, 54, 128, 0.93) 100%),
+                        url('images/classroom-interior.jpg') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .academics-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 60%);
+            animation: heroGlow 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, -20px); }
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            color: #4a5568;
+            transition: color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            filter: blur(40px);
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(20px) rotate(-10deg); }
+            75% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* Glass container */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Subject cards */
+        .subject-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .subject-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .subject-card .icon-wrap {
+            transition: all 0.4s ease;
+        }
+
+        .subject-card:hover .icon-wrap {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Philosophy cards */
+        .philosophy-card {
+            transition: all 0.3s ease;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+
+        .philosophy-card .icon-circle {
+            transition: all 0.4s ease;
+        }
+
+        .philosophy-card:hover .icon-circle {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+        }
+
+        /* Level tabs */
+        .level-tab {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .level-tab:hover {
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .level-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 16px rgba(30, 64, 175, 0.4);
+        }
+
+        .level-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .level-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-12px) translateX(-50%); }
+            60% { transform: translateY(-6px) translateX(-50%); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .academics-hero {
+                background-attachment: scroll;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            .glass-container {
+                border-radius: 16px;
+                padding: 1.5rem;
+            }
+
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 2rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.75rem !important;
+            }
+
+            .p-8, .p-10, .p-12 {
+                padding: 1.5rem !important;
+            }
+
+            .gap-8, .gap-12, .gap-16 {
+                gap: 1.5rem !important;
+            }
+
+            .py-20, .py-24 {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 xl:px-0 py-3 max-w-7xl">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/school-logo.jpg" alt="School Logo" class="h-16 w-16 rounded-lg shadow-md border-2 border-gray-100">
+                    <div class="hidden sm:block">
+                        <h1 class="text-xl font-bold text-gray-800">S.N. MEMORIAL SCHOOL</h1>
+                        <h3 class="text-sm font-medium text-gray-700 mt-1" style="font-family: 'Inter', sans-serif; font-weight: 500;">CBSE Affiliated English Medium Co-Educational School</h3>
+                        <p class="text-xs text-gray-500 mt-1" style="font-family: 'Inter', sans-serif; font-weight: 400;">© Shasradha Karmakar of Class IX</p>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="Me.html" class="nav-link">(About Web Developer)</a>
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="academics.html" class="nav-link active">Academics</a>
+                    <a href="activities.html" class="nav-link">Activities</a>
+                    <a href="admission.html" class="bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all font-medium" style="font-family: 'Inter', sans-serif;">
+                        Contact
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700 focus:outline-none" aria-label="Toggle mobile menu">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white z-40 lg:hidden pt-20 px-6 overflow-y-auto">
+        <div class="flex flex-col space-y-6 py-8">
+            <a href="Me.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">About Web Developer</a>
+            <a href="index.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Home</a>
+            <a href="about.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">About</a>
+            <a href="academics.html" class="text-lg font-medium text-blue-800 py-2 border-b border-blue-200">Academics</a>
+            <a href="activities.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Activities</a>
+            <a href="admission.html" class="bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-3 rounded-lg text-center font-medium mt-4">
+                Contact
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="academics-hero min-h-[75vh] flex items-center pt-24 pb-16 relative">
+        <div class="floating-element w-96 h-96 -top-48 -left-48 opacity-20"></div>
+        <div class="floating-element w-64 h-64 top-1/4 right-0 opacity-15" style="animation-delay: -5s"></div>
+        <div class="floating-element w-80 h-80 bottom-0 left-1/3 opacity-10" style="animation-delay: -10s"></div>
+
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl relative z-10">
+            <div class="glass-container p-8 md:p-12 max-w-3xl mx-auto text-center text-white" data-aos="fade-up" data-aos-delay="100">
+                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-6 text-sm tracking-wider uppercase" style="font-family: 'Inter', sans-serif;">
+                    <i class="fas fa-graduation-cap text-amber-400"></i>
+                    <span class="text-blue-100">CBSE Curriculum</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white">
+                        Academic
+                    </span>
+                    <br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-100">
+                        Excellence
+                    </span>
+                </h1>
+                <p class="text-xl text-blue-100 mb-8 font-light tracking-wide" style="font-family: 'Inter', sans-serif;">
+                    Shaping Minds for a Brighter Future
+                </p>
+                <div class="flex justify-center space-x-3">
+                    <div class="w-10 h-1 bg-amber-400 rounded-full"></div>
+                    <div class="w-10 h-1 bg-white/30 rounded-full"></div>
+                    <div class="w-10 h-1 bg-white/30 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator absolute bottom-8 left-1/2 text-white/60">
+            <i class="fas fa-chevron-down text-xl"></i>
+        </div>
+    </section>
+
+    <!-- Commitment Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family: 'Inter', sans-serif;">OUR PROMISE</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    A Commitment to <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Excellence</span>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto" style="font-family: 'Inter', sans-serif;">
+                    S.N. Memorial School offers a broad and balanced curriculum designed to prepare students for academic success and fulfilling social-cultural lives. Our personalized approach ensures every student receives the attention needed to excel.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="philosophy-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center" data-aos="fade-up">
+                    <div class="icon-circle w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-book-open text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Comprehensive Curriculum</h3>
+                    <p class="text-gray-600" style="font-family: 'Inter', sans-serif;">CBSE-aligned syllabus with modern, innovative teaching methods that make learning engaging and effective.</p>
+                </div>
+
+                <div class="philosophy-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-circle w-20 h-20 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Expert Faculty</h3>
+                    <p class="text-gray-600" style="font-family: 'Inter', sans-serif;">Qualified educators with years of experience, dedicated to nurturing each student's potential.</p>
+                </div>
+
+                <div class="philosophy-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-circle w-20 h-20 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-flask text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Practical Learning</h3>
+                    <p class="text-gray-600" style="font-family: 'Inter', sans-serif;">Hands-on experiments, labs, field trips, and project-based assessments for deeper understanding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Levels with Tabs -->
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family: 'Inter', sans-serif;">GRADE LEVELS</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Academic <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Programs</span> by Level
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family: 'Inter', sans-serif;">
+                    Tailored learning experiences for every stage of a student's journey
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up">
+                <button class="level-tab active px-6 py-3 rounded-xl font-semibold text-sm border border-gray-200" style="font-family: 'Inter', sans-serif;" onclick="switchTab('foundation')">
+                    <i class="fas fa-seedling mr-2"></i>Foundation (Nursery–II)
+                </button>
+                <button class="level-tab px-6 py-3 rounded-xl font-semibold text-sm border border-gray-200" style="font-family: 'Inter', sans-serif;" onclick="switchTab('primary')">
+                    <i class="fas fa-book-reader mr-2"></i>Primary (III–V)
+                </button>
+                <button class="level-tab px-6 py-3 rounded-xl font-semibold text-sm border border-gray-200" style="font-family: 'Inter', sans-serif;" onclick="switchTab('middle')">
+                    <i class="fas fa-microscope mr-2"></i>Middle (VI–VIII)
+                </button>
+                <button class="level-tab px-6 py-3 rounded-xl font-semibold text-sm border border-gray-200" style="font-family: 'Inter', sans-serif;" onclick="switchTab('secondary')">
+                    <i class="fas fa-user-graduate mr-2"></i>Secondary (IX–X)
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="foundation" class="level-content active" data-aos="fade-up">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+                        <img src="images/classroom-interior.jpg" alt="Foundation Level" class="w-full h-80 object-cover transform transition duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold" style="font-family: 'Inter', sans-serif;">AGES 3–7</span>
+                        </div>
+                    </div>
+                    <div class="space-y-5">
+                        <h3 class="text-2xl font-bold text-gray-800">Foundation Stage</h3>
+                        <p class="text-gray-600 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+                            Our early years program focuses on building a strong foundation through play-based learning, social-emotional development, and an introduction to basic literacy and numeracy skills in a nurturing environment.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Play-Based Learning</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Early Literacy</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Creative Arts</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Motor Skills</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Number Concepts</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Social Skills</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="primary" class="level-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+                        <img src="images/science-lab.jpg" alt="Primary Level" class="w-full h-80 object-cover transform transition duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold" style="font-family: 'Inter', sans-serif;">AGES 8–10</span>
+                        </div>
+                    </div>
+                    <div class="space-y-5">
+                        <h3 class="text-2xl font-bold text-gray-800">Primary Stage</h3>
+                        <p class="text-gray-600 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+                            The primary level builds on the foundation with structured academics, introducing core subjects like Mathematics, Science, English, Hindi, and Bengali alongside environmental studies and computer education.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Mathematics</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">English & Hindi</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Environmental Studies</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Computer Education</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Bengali Language</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">General Knowledge</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="middle" class="level-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+                        <img src="images/math-class.jpg" alt="Middle Level" class="w-full h-80 object-cover transform transition duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold" style="font-family: 'Inter', sans-serif;">AGES 11–13</span>
+                        </div>
+                    </div>
+                    <div class="space-y-5">
+                        <h3 class="text-2xl font-bold text-gray-800">Middle School</h3>
+                        <p class="text-gray-600 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+                            Our middle school program deepens subject knowledge with dedicated labs for Science and Mathematics. Students begin exploring their interests through enhanced co-curricular activities and Olympiad preparation.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Science Labs</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Math Olympiad Prep</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Social Science</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Computer Science</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Art & Craft</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Physical Education</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="secondary" class="level-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="relative rounded-2xl overflow-hidden shadow-xl group">
+                        <img src="images/science-exhibition.jpg" alt="Secondary Level" class="w-full h-80 object-cover transform transition duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold" style="font-family: 'Inter', sans-serif;">AGES 14–16</span>
+                        </div>
+                    </div>
+                    <div class="space-y-5">
+                        <h3 class="text-2xl font-bold text-gray-800">Secondary School</h3>
+                        <p class="text-gray-600 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+                            The secondary level prepares students for CBSE Board examinations with intensive coaching, career guidance, and specialized subject tracks. Our focus is on academic excellence and holistic development.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Board Exam Prep</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Career Guidance</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Advanced Physics</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Chemistry & Biology</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Advanced Mathematics</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check-circle text-blue-600"></i>
+                                <span class="text-gray-700 text-sm" style="font-family: 'Inter', sans-serif;">Information Technology</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Framework -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family: 'Inter', sans-serif;">SUBJECTS</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Our <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Curriculum</span> Framework
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family: 'Inter', sans-serif;">
+                    A well-rounded education covering science, mathematics, languages, and more
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Science -->
+                <div class="subject-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-atom text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Science</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family: 'Inter', sans-serif;">Comprehensive STEM education with practical approach</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>Physics & Chemistry Labs</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>Biology Practicals</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>National Olympiad Prep</li>
+                    </ul>
+                </div>
+
+                <!-- Mathematics -->
+                <div class="subject-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-calculator text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Mathematics</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family: 'Inter', sans-serif;">Building analytical thinking and problem-solving skills</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Olympiad Training</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Math Lab Activities</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Real-World Problem Solving</li>
+                    </ul>
+                </div>
+
+                <!-- English -->
+                <div class="subject-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-language text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">English</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family: 'Inter', sans-serif;">Developing strong communication and literary skills</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Creative Writing</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Public Speaking</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Debate & Elocution</li>
+                    </ul>
+                </div>
+
+                <!-- Social Science -->
+                <div class="subject-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-globe-asia text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Social Science</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family: 'Inter', sans-serif;">Understanding history, geography, civics, and economics</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>History & Heritage</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>Geography & Maps</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>Civics & Economics</li>
+                    </ul>
+                </div>
+
+                <!-- Computer Science -->
+                <div class="subject-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-laptop-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Computer Science</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family: 'Inter', sans-serif;">Digital literacy and coding skills for the future</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-600 text-xs"></i>Basic Programming</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-600 text-xs"></i>Digital Skills</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-600 text-xs"></i>Internet Safety</li>
+                    </ul>
+                </div>
+
+                <!-- Languages -->
+                <div class="subject-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-rose-500 to-rose-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-book text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Hindi & Bengali</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family: 'Inter', sans-serif;">Preserving linguistic heritage alongside global competence</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-rose-600 text-xs"></i>Hindi Literature</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-rose-600 text-xs"></i>Bengali Literature</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-rose-600 text-xs"></i>Creative Composition</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Philosophy -->
+    <section class="py-24 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle at 20% 50%, rgba(245,158,11,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(59,130,246,0.3) 0%, transparent 50%);"></div>
+        </div>
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Our Teaching <span class="text-amber-400">Philosophy</span>
+                </h2>
+                <p class="text-blue-200 text-lg max-w-2xl mx-auto" style="font-family: 'Inter', sans-serif;">
+                    What makes our approach to education unique and effective
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center hover:bg-white/15 transition-all" data-aos="fade-up">
+                    <div class="w-16 h-16 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-friends text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Personalized Attention</h3>
+                    <p class="text-blue-200 text-sm" style="font-family: 'Inter', sans-serif;">1:15 teacher-student ratio with individualized learning plans</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center hover:bg-white/15 transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hands-helping text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Hands-on Learning</h3>
+                    <p class="text-blue-200 text-sm" style="font-family: 'Inter', sans-serif;">Practical labs, field trips, and project-based assessments</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center hover:bg-white/15 transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-brain text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Critical Thinking</h3>
+                    <p class="text-blue-200 text-sm" style="font-family: 'Inter', sans-serif;">Encouraging questioning, analysis, and independent reasoning</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center hover:bg-white/15 transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-amber-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Regular Assessment</h3>
+                    <p class="text-blue-200 text-sm" style="font-family: 'Inter', sans-serif;">Continuous evaluation with detailed progress reports for parents</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-4xl text-center" data-aos="fade-up">
+            <div class="relative">
+                <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/10 to-amber-500/10 rounded-3xl blur-xl opacity-60"></div>
+                <div class="relative bg-white rounded-2xl p-10 md:p-14 shadow-xl border border-gray-100">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-school text-3xl text-white"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                        Ready to Start Your <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Academic Journey</span>?
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto" style="font-family: 'Inter', sans-serif;">
+                        Join S.N. Memorial School and give your child the gift of quality education in a nurturing environment.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="admission.html" class="bg-gradient-to-r from-blue-800 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:-translate-y-1 transition-all inline-flex items-center justify-center gap-2" style="font-family: 'Inter', sans-serif;">
+                            <i class="fas fa-paper-plane"></i>
+                            Apply for Admission
+                        </a>
+                        <a href="activities.html" class="border-2 border-blue-800 text-blue-800 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all inline-flex items-center justify-center gap-2" style="font-family: 'Inter', sans-serif;">
+                            <i class="fas fa-running"></i>
+                            Explore Activities
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="grid md:grid-cols-4 gap-8 pb-12">
+                <div>
+                    <img src="images/school-logo.jpg" alt="Logo" class="h-20 mb-4 rounded-lg border-2 border-gray-100">
+                    <p class="text-sm" style="font-family: 'Inter', sans-serif;">Run & Managed by S.N. Memorial Educational Trust</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400" aria-label="Quick Links" style="font-family: 'Inter', sans-serif;">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="admission.html" class="hover:text-white transition-colors">Admissions</a></li>
+                        <li><a href="academics.html" class="hover:text-white transition-colors">Academics</a></li>
+                        <li><a href="activities.html" class="hover:text-white transition-colors">Activities</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="Me.html" class="hover:text-white transition-colors">About Web Developer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Resources</h3>
+                    <ul class="space-y-2 text-gray-400" style="font-family: 'Inter', sans-serif;">
+                        <li><a href="#downloads" class="hover:text-white transition-colors">Forms & Downloads</a></li>
+                        <li><a href="#careers" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#alumni" class="hover:text-white transition-colors">Alumni Network</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <div class="flex space-x-4 text-2xl text-gray-400">
+                        <a href="https://www.facebook.com/SNMEMORIALSCHOOL" class="hover:text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/shasradha_?igsh=MWdpc2JuNXRtZXA4ZQ==" class="hover:text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@snmemorialasn?si=sXb1aGauxGwf9mIm" class="hover:text-white transition-colors" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-semibold mb-2 text-white">School Hours</h4>
+                        <p class="text-sm text-gray-400" style="font-family: 'Inter', sans-serif;">Monday - Friday: 8:00 AM - 2:00 PM</p>
+                        <p class="text-sm text-gray-400" style="font-family: 'Inter', sans-serif;">Saturday: 8:00 AM - 12:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-sm font-medium text-gray-400" style="font-family: 'Inter', sans-serif;">
+                    © 2026 This site has been developed by Shasradha Karmakar of Class IX.
+                </p>
+                <p class="text-sm text-gray-400 mt-2" style="font-family: 'Inter', sans-serif;">
+                    ⚠️ This website is currently under development and is in its prototype/beta stage. Some features and links may be incomplete or non-functional.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+
+            // Mobile menu functionality
+            var mobileMenuButton = document.getElementById('mobile-menu-button');
+            var mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Navbar shadow on scroll
+            var navbar = document.querySelector('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-md');
+                    navbar.classList.remove('shadow-sm');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                    navbar.classList.add('shadow-sm');
+                }
+            });
+        });
+
+        // Tab switching
+        function switchTab(tabId) {
+            // Remove active from all tabs and contents
+            document.querySelectorAll('.level-tab').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.level-content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+
+            // Add active to clicked tab
+            event.currentTarget.classList.add('active');
+
+            // Show corresponding content
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+

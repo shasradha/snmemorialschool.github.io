@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the co-curricular activities at S.N. Memorial School - Sports, Creative Arts, Performing Arts, Events, and more.">
+    <title>Activities - S.N. Memorial School</title>
+
+    <!-- Core Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Hero */
+        .activities-hero {
+            background: linear-gradient(135deg, rgba(4, 36, 88, 0.93) 0%, rgba(9, 54, 128, 0.93) 100%),
+                        url('images/sports-day.jpg') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activities-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 60%);
+            animation: heroGlow 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, -20px); }
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            color: #4a5568;
+            transition: color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-link:hover { color: var(--primary); }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: var(--primary); font-weight: 600; }
+        .nav-link.active::after { width: 100%; }
+
+        /* Mobile Navigation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active { transform: translateX(0); }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            filter: blur(40px);
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(20px) rotate(-10deg); }
+            75% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* Glass container */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Activity Cards */
+        .activity-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .activity-card:hover::before { transform: scaleX(1); }
+
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .activity-card .icon-wrap {
+            transition: all 0.4s ease;
+        }
+
+        .activity-card:hover .icon-wrap {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card-sports::before { background: linear-gradient(90deg, #1e40af, #3b82f6); }
+        .card-arts::before { background: linear-gradient(90deg, #d97706, #f59e0b); }
+        .card-performing::before { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+        .card-debate::before { background: linear-gradient(90deg, #059669, #34d399); }
+        .card-science::before { background: linear-gradient(90deg, #dc2626, #f87171); }
+        .card-culture::before { background: linear-gradient(90deg, #db2777, #f472b6); }
+
+        /* Gallery items */
+        .gallery-card {
+            overflow: hidden;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .gallery-card img {
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-card .overlay {
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-card:hover .overlay {
+            opacity: 1 !important;
+        }
+
+        /* Splide custom styles */
+        .splide__slide { border-radius: 16px; overflow: hidden; }
+
+        .splide__arrow {
+            background: rgba(255,255,255,0.9) !important;
+            width: 44px !important;
+            height: 44px !important;
+            opacity: 1 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            border-radius: 12px !important;
+        }
+
+        .splide__arrow svg {
+            fill: #1e40af !important;
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+        .splide__arrow:hover {
+            background: white !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+        }
+
+        .splide__pagination__page {
+            background: #cbd5e1 !important;
+            width: 10px !important;
+            height: 10px !important;
+        }
+
+        .splide__pagination__page.is-active {
+            background: var(--primary) !important;
+            transform: scale(1.3);
+        }
+
+        /* Event card */
+        .event-card {
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-12px) translateX(-50%); }
+            60% { transform: translateY(-6px) translateX(-50%); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .activities-hero { background-attachment: scroll; }
+
+            .floating-element { display: none; }
+
+            .glass-container { border-radius: 16px; padding: 1.5rem; }
+
+            .text-4xl, .text-5xl, .text-6xl { font-size: 2rem !important; }
+            .text-3xl { font-size: 1.75rem !important; }
+
+            .p-8, .p-10, .p-12 { padding: 1.5rem !important; }
+            .gap-8, .gap-12, .gap-16 { gap: 1.5rem !important; }
+
+            .py-20, .py-24 {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+
+            .container { padding-left: 1rem; padding-right: 1rem; }
+
+            .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .grid-cols-3 { grid-template-columns: repeat(2, 1fr) !important; }
+            .grid-cols-4 { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 xl:px-0 py-3 max-w-7xl">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="images/school-logo.jpg" alt="School Logo" class="h-16 w-16 rounded-lg shadow-md border-2 border-gray-100">
+                    <div class="hidden sm:block">
+                        <h1 class="text-xl font-bold text-gray-800">S.N. MEMORIAL SCHOOL</h1>
+                        <h3 class="text-sm font-medium text-gray-700 mt-1" style="font-family:'Inter',sans-serif;font-weight:500;">CBSE Affiliated English Medium Co-Educational School</h3>
+                        <p class="text-xs text-gray-500 mt-1" style="font-family:'Inter',sans-serif;font-weight:400;">© Shasradha Karmakar of Class IX</p>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="Me.html" class="nav-link">(About Web Developer)</a>
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="academics.html" class="nav-link">Academics</a>
+                    <a href="activities.html" class="nav-link active">Activities</a>
+                    <a href="admission.html" class="bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all font-medium" style="font-family:'Inter',sans-serif;">
+                        Contact
+                    </a>
+                </div>
+
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700 focus:outline-none" aria-label="Toggle mobile menu">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white z-40 lg:hidden pt-20 px-6 overflow-y-auto">
+        <div class="flex flex-col space-y-6 py-8">
+            <a href="Me.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">About Web Developer</a>
+            <a href="index.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Home</a>
+            <a href="about.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">About</a>
+            <a href="academics.html" class="text-lg font-medium text-gray-800 py-2 border-b border-gray-100">Academics</a>
+            <a href="activities.html" class="text-lg font-medium text-blue-800 py-2 border-b border-blue-200">Activities</a>
+            <a href="admission.html" class="bg-gradient-to-br from-blue-800 to-blue-600 text-white px-6 py-3 rounded-lg text-center font-medium mt-4">
+                Contact
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="activities-hero min-h-[75vh] flex items-center pt-24 pb-16 relative">
+        <div class="floating-element w-96 h-96 -top-48 -left-48 opacity-20"></div>
+        <div class="floating-element w-64 h-64 top-1/4 right-0 opacity-15" style="animation-delay:-5s"></div>
+        <div class="floating-element w-80 h-80 bottom-0 left-1/3 opacity-10" style="animation-delay:-10s"></div>
+
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl relative z-10">
+            <div class="glass-container p-8 md:p-12 max-w-3xl mx-auto text-center text-white" data-aos="fade-up" data-aos-delay="100">
+                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-5 py-2 mb-6 text-sm tracking-wider uppercase" style="font-family:'Inter',sans-serif;">
+                    <i class="fas fa-star text-amber-400"></i>
+                    <span class="text-blue-100">Beyond The Classroom</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-white">
+                        Student Activities
+                    </span>
+                    <br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-100">
+                        Hub
+                    </span>
+                </h1>
+                <p class="text-xl text-blue-100 mb-6 font-light tracking-wide" style="font-family:'Inter',sans-serif;">
+                    Where Passion Meets Excellence in Learning & Creativity
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 mt-6" style="font-family:'Inter',sans-serif;">
+                    <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
+                        <i class="fas fa-trophy text-amber-400"></i>
+                        <span class="text-sm text-blue-100">15+ Annual Events</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
+                        <i class="fas fa-palette text-amber-400"></i>
+                        <span class="text-sm text-blue-100">200+ Creative Projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator absolute bottom-8 left-1/2 text-white/60">
+            <i class="fas fa-chevron-down text-xl"></i>
+        </div>
+    </section>
+
+    <!-- Activities Grid -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family:'Inter',sans-serif;">OUR PROGRAMS</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Co-Curricular <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Activities</span>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif;">
+                    Developing well-rounded individuals through diverse activities beyond academics
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Athletics -->
+                <div class="activity-card card-sports bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-running text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Athletics Program</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Championship-level training in 15+ sports disciplines</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family:'Inter',sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>Annual Inter-School Tournament</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>Yoga & Meditation Sessions</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>Martial Arts Training</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-600 text-xs"></i>Annual Sports Day</li>
+                    </ul>
+                </div>
+
+                <!-- Creative Arts -->
+                <div class="activity-card card-arts bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-palette text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Creative Arts Zone</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Nurturing artistic expression through diverse mediums</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family:'Inter',sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Annual Art Exhibition</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Digital Art Workshops</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Inter-School Competitions</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-amber-600 text-xs"></i>Professional Craft Sessions</li>
+                    </ul>
+                </div>
+
+                <!-- Performing Arts -->
+                <div class="activity-card card-performing bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-theater-masks text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Performing Arts</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Developing stage presence and artistic talent</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family:'Inter',sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Annual Cultural Concert</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Theater Workshops</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Classical Music Training</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-600 text-xs"></i>Talent Show Competitions</li>
+                    </ul>
+                </div>
+
+                <!-- Debate & Literary -->
+                <div class="activity-card card-debate bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-bullhorn text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Debate & Literary</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Building communication and critical thinking skills</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family:'Inter',sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>Debate Competitions</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>Elocution Contests</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>Essay Writing</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-600 text-xs"></i>Quiz Competitions</li>
+                    </ul>
+                </div>
+
+                <!-- Science & Innovation -->
+                <div class="activity-card card-science bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-rocket text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Science & Innovation</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Fostering curiosity and scientific temperament</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family:'Inter',sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-red-600 text-xs"></i>Science Exhibition</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-red-600 text-xs"></i>Project Presentations</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-red-600 text-xs"></i>Innovation Challenges</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-red-600 text-xs"></i>Olympiad Preparation</li>
+                    </ul>
+                </div>
+
+                <!-- Cultural & Celebrations -->
+                <div class="activity-card card-culture bg-white rounded-2xl p-8 shadow-lg border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-wrap w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-flag text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Cultural Celebrations</h3>
+                    <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Celebrating India's diverse heritage and traditions</p>
+                    <ul class="space-y-2 text-sm text-gray-500" style="font-family:'Inter',sans-serif;">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-600 text-xs"></i>Independence Day</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-600 text-xs"></i>Republic Day</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-600 text-xs"></i>Teachers' Day</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-600 text-xs"></i>Festival Celebrations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Carousel -->
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family:'Inter',sans-serif;">GALLERY</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Captured <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Moments</span>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif;">
+                    Highlights from our vibrant school life and events
+                </p>
+            </div>
+
+            <!-- Splide Carousel -->
+            <div class="splide mb-16" data-aos="fade-up">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/yoga-session.jpg" alt="Yoga Session" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Morning Yoga Session</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Wellness & Mindfulness</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/martial-arts.jpg" alt="Martial Arts" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Martial Arts Training</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Discipline & Strength</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/science-exhibition.jpg" alt="Science Exhibition" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Science Exhibition</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Innovation & Discovery</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/annual-function.jpg" alt="Annual Function" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Annual Function</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Dance Performance</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/independence-day.jpg" alt="Independence Day" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Independence Day</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">National Celebration</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/dance-performance.jpg" alt="Dance Performance" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Dance Performance</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Annual Day Celebration</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/debate-event.jpg" alt="Debate Competition" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Debate Competition</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Public Speaking & Reasoning</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide px-2">
+                            <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+                                <img src="images/diwali-celebration.jpg" alt="Diwali Celebration" class="w-full h-80 md:h-96 object-cover transform transition duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent flex items-end p-6">
+                                    <div class="text-white">
+                                        <h4 class="text-lg font-bold">Diwali Celebration</h4>
+                                        <p class="text-sm text-blue-200" style="font-family:'Inter',sans-serif;">Festival of Lights</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up">
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/event-photo.jpg" alt="School Event" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">School Event</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/school-event-day.jpg" alt="Children's Day" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">Children's Day</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/art.jpg" alt="Art Exhibition" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">Art Exhibition</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/cultural-event.jpg" alt="Celebration" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">Celebration</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/teacher-portrait.jpg" alt="Annual Function" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">Annual Function</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/debate-stage.jpg" alt="Debate" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">Debate Competition</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/campus-front.jpg" alt="School Campus" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">School Campus</p>
+                    </div>
+                </div>
+                <div class="gallery-card relative rounded-2xl shadow-md">
+                    <img src="images/yoga-morning.jpg" alt="Yoga Day" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent rounded-2xl opacity-0 flex items-end p-4">
+                        <p class="text-white text-sm font-medium">International Yoga Day</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facebook CTA -->
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="https://www.facebook.com/SNMEMORIALSCHOOL" target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-700 to-blue-600 text-white px-8 py-4 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all font-semibold" style="font-family:'Inter',sans-serif;">
+                    <i class="fab fa-facebook text-lg"></i>
+                    Explore Our Facebook Gallery
+                    <i class="fas fa-external-link-alt text-sm opacity-70"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="inline-block bg-blue-100 text-blue-800 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-4" style="font-family:'Inter',sans-serif;">UPCOMING</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Big <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600">Events</span>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto" style="font-family:'Inter',sans-serif;">
+                    Annual events that students look forward to every year
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="event-card bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up">
+                    <div class="bg-gradient-to-r from-blue-800 to-blue-600 p-6 text-center text-white">
+                        <div class="text-4xl font-bold" style="font-family:'Inter',sans-serif;">9-10</div>
+                        <div class="text-blue-200 uppercase tracking-wider text-sm" style="font-family:'Inter',sans-serif;">November</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Science Exhibition</h3>
+                        <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Showcasing 50+ student innovations in STEM fields with live demonstrations.</p>
+                        <div class="flex items-center gap-2 text-blue-800">
+                            <i class="fas fa-map-marker-alt text-sm"></i>
+                            <span class="text-sm font-medium" style="font-family:'Inter',sans-serif;">School Auditorium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gradient-to-r from-amber-500 to-amber-400 p-6 text-center text-white">
+                        <div class="text-4xl font-bold" style="font-family:'Inter',sans-serif;">20</div>
+                        <div class="text-amber-100 uppercase tracking-wider text-sm" style="font-family:'Inter',sans-serif;">January</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Annual Sports Day</h3>
+                        <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Annual inter-house sports championship with track & field events.</p>
+                        <div class="flex items-center gap-2 text-amber-600">
+                            <i class="fas fa-map-marker-alt text-sm"></i>
+                            <span class="text-sm font-medium" style="font-family:'Inter',sans-serif;">School Playground</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-gradient-to-r from-purple-600 to-purple-500 p-6 text-center text-white">
+                        <div class="text-4xl font-bold" style="font-family:'Inter',sans-serif;">22</div>
+                        <div class="text-purple-200 uppercase tracking-wider text-sm" style="font-family:'Inter',sans-serif;">December</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Annual Function</h3>
+                        <p class="text-gray-600 text-sm mb-4" style="font-family:'Inter',sans-serif;">Student art showcase, dance, drama, and creative workshops on stage.</p>
+                        <div class="flex items-center gap-2 text-purple-600">
+                            <i class="fas fa-map-marker-alt text-sm"></i>
+                            <span class="text-sm font-medium" style="font-family:'Inter',sans-serif;">School Auditorium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-r from-amber-500/20 to-transparent rounded-full blur-3xl opacity-30"></div>
+            <div class="absolute -bottom-32 -left-40 w-96 h-96 bg-gradient-to-r from-blue-400/15 to-transparent rounded-full blur-3xl opacity-25"></div>
+        </div>
+        <div class="container mx-auto px-4 xl:px-0 max-w-4xl text-center relative z-10" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                Discover Your Child's <span class="text-amber-400">Potential</span>
+            </h2>
+            <p class="text-xl text-blue-200 mb-10 max-w-2xl mx-auto" style="font-family:'Inter',sans-serif;">
+                Beyond textbooks — unlock creativity, build confidence, and forge lifelong passions at S.N. Memorial School.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="admission.html" class="bg-white text-blue-800 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all hover:shadow-lg hover:-translate-y-1 inline-flex items-center justify-center gap-2" style="font-family:'Inter',sans-serif;">
+                    <i class="fas fa-paper-plane"></i>
+                    Start Admission
+                </a>
+                <a href="academics.html" class="border-2 border-white/30 text-white px-8 py-4 rounded-xl font-medium hover:border-white/50 hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2" style="font-family:'Inter',sans-serif;">
+                    <i class="fas fa-book"></i>
+                    Explore Academics
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-4 xl:px-0 max-w-7xl">
+            <div class="grid md:grid-cols-4 gap-8 pb-12">
+                <div>
+                    <img src="images/school-logo.jpg" alt="Logo" class="h-20 mb-4 rounded-lg border-2 border-gray-100">
+                    <p class="text-sm" style="font-family:'Inter',sans-serif;">Run & Managed by S.N. Memorial Educational Trust</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400" aria-label="Quick Links" style="font-family:'Inter',sans-serif;">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="admission.html" class="hover:text-white transition-colors">Admissions</a></li>
+                        <li><a href="academics.html" class="hover:text-white transition-colors">Academics</a></li>
+                        <li><a href="activities.html" class="hover:text-white transition-colors">Activities</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="Me.html" class="hover:text-white transition-colors">About Web Developer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Resources</h3>
+                    <ul class="space-y-2 text-gray-400" style="font-family:'Inter',sans-serif;">
+                        <li><a href="#downloads" class="hover:text-white transition-colors">Forms & Downloads</a></li>
+                        <li><a href="#careers" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#alumni" class="hover:text-white transition-colors">Alumni Network</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <div class="flex space-x-4 text-2xl text-gray-400">
+                        <a href="https://www.facebook.com/SNMEMORIALSCHOOL" class="hover:text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/shasradha_?igsh=MWdpc2JuNXRtZXA4ZQ==" class="hover:text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@snmemorialasn?si=sXb1aGauxGwf9mIm" class="hover:text-white transition-colors" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-semibold mb-2 text-white">School Hours</h4>
+                        <p class="text-sm text-gray-400" style="font-family:'Inter',sans-serif;">Monday - Friday: 8:00 AM - 2:00 PM</p>
+                        <p class="text-sm text-gray-400" style="font-family:'Inter',sans-serif;">Saturday: 8:00 AM - 12:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-sm font-medium text-gray-400" style="font-family:'Inter',sans-serif;">
+                    © 2026 This site has been developed by Shasradha Karmakar of Class IX.
+                </p>
+                <p class="text-sm text-gray-400 mt-2" style="font-family:'Inter',sans-serif;">
+                    ⚠️ This website is currently under development and is in its prototype/beta stage. Some features and links may be incomplete or non-functional.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Splide carousel
+            new Splide('.splide', {
+                type: 'loop',
+                perPage: 2,
+                gap: '1rem',
+                autoplay: true,
+                interval: 4000,
+                pauseOnHover: true,
+                arrows: true,
+                pagination: true,
+                breakpoints: {
+                    768: {
+                        perPage: 1
+                    }
+                }
+            }).mount();
+
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+
+            // Mobile menu functionality
+            var mobileMenuButton = document.getElementById('mobile-menu-button');
+            var mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Navbar shadow on scroll
+            var navbar = document.querySelector('nav');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-md');
+                    navbar.classList.remove('shadow-sm');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                    navbar.classList.add('shadow-sm');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
